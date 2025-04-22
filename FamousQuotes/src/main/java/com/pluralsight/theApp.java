@@ -6,10 +6,13 @@ public class theApp {
 
     public static void main(String[] args) {
 
+        //variable used to keep the app looping
         boolean appRunning = true;
 
+        //the thing I user for input
         Scanner theScanner = new Scanner(System.in);
 
+        //quotes generated from chatGPT
         String[] quotes = {
                 "The only thing we have to fear is fear itself. – Franklin D. Roosevelt",
                 "That's one small step for man, one giant leap for mankind. – Neil Armstrong",
@@ -22,6 +25,7 @@ public class theApp {
                 "The journey of a thousand miles begins with one step. – Lao Tzu",
                 "Imagination is more important than knowledge. – Albert Einstein"
         };
+
 
         while(appRunning) {
 
