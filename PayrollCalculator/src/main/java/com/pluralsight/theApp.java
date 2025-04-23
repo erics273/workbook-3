@@ -1,7 +1,10 @@
 package com.pluralsight;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.Scanner;
 
 public class theApp {
 
@@ -9,32 +12,49 @@ public class theApp {
 
         try{
 
+            Scanner theScanner = new Scanner(System.in);
+
+            System.out.println("Enter the name of the file employee file to process:");
+            String inputFile = theScanner.nextLine();
+
+            System.out.println("Enter the name of the payroll file to create:");
+            String outputFile = theScanner.nextLine();
+
             // create a FileReader object connected to the File
-            FileReader fileReader = new FileReader("src/main/resources/employees.csv");
+            FileReader fileReader = new FileReader("src/main/resources/" + inputFile);
             // create a BufferedReader to manage input stream
             BufferedReader bufReader = new BufferedReader(fileReader);
 
-            //creating a variable to hold the input
-            String theLine;
-            while((theLine = bufReader.readLine()) != null) {
+            // create a FileWriter
+            FileWriter fileWriter = new FileWriter("src/main/resources/" + outputFile);
+            // create a BufferedWriter
+            BufferedWriter bufWriter = new BufferedWriter(fileWriter);
 
-                String[] inputParts = theLine.split("\\|");
+            //call the write methodn on the bufWriter
+            bufWriter.write("id|name|gross pay\n");
 
-                //check to see if the first part of the line is equal to id
+            String input;
+            while((input = bufReader.readLine()) != null) {
+
+                String[] inputParts = input.split("\\|");
+
+                //get rid of the first row
                 if(inputParts[0].equals("id")){
                     continue;
                 }
 
-                //create the employee with the data we parsed from the csv line
                 Employee theEmployee = new Employee(Integer.parseInt(inputParts[0]), inputParts[1], Double.parseDouble(inputParts[2]), Double.parseDouble(inputParts[3]) );
 
-                //print out the info to the user
-                System.out.printf("%d - %s - $%.2f\n", theEmployee.getEmployeeId(), theEmployee.getName(), theEmployee.getGrossPay());
+              //  String output = String.format("%d|%s|%.2f\n", theEmployee.getEmployeeId(), theEmployee.getName(), theEmployee.getGrossPay());
+                String poop = theEmployee.getEmployeeId() +"|"+theEmployee.getName()+"|"+theEmployee.getGrossPay();
+
+                bufWriter.write(poop);
+                //System.out.printf("%d - %s - $%.2f\n", theEmployee.getEmployeeId(), theEmployee.getName(), theEmployee.getGrossPay());
 
             }
 
-            //close the buffer(file)
             bufReader.close();
+            bufWriter.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
