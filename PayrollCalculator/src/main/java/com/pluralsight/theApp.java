@@ -14,20 +14,26 @@ public class theApp {
             // create a BufferedReader to manage input stream
             BufferedReader bufReader = new BufferedReader(fileReader);
 
-            String input;
-            while((input = bufReader.readLine()) != null) {
+            //creating a variable to hold the input
+            String theLine;
+            while((theLine = bufReader.readLine()) != null) {
 
-                String[] inputParts = input.split("\\|");
+                String[] inputParts = theLine.split("\\|");
+
+                //check to see if the first part of the line is equal to id
                 if(inputParts[0].equals("id")){
                     continue;
                 }
 
+                //create the employee with the data we parsed from the csv line
                 Employee theEmployee = new Employee(Integer.parseInt(inputParts[0]), inputParts[1], Double.parseDouble(inputParts[2]), Double.parseDouble(inputParts[3]) );
 
+                //print out the info to the user
                 System.out.printf("%d - %s - $%.2f\n", theEmployee.getEmployeeId(), theEmployee.getName(), theEmployee.getGrossPay());
 
             }
 
+            //close the buffer(file)
             bufReader.close();
 
         } catch (Exception e) {

@@ -14,10 +14,11 @@ public class Employee {
         this.payRate = payRate;
     }
 
+
+    //method that calculates the pay based on the hours worked
     public double getGrossPay(){
         return this.getHoursWorked() * this.getPayRate();
     }
-
 
     public int getEmployeeId() {
         return employeeId;
