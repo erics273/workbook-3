@@ -89,6 +89,7 @@ public class StoreApp {
 
     }
 
+    //method that displays all the products
     public static void displayAllProducts(ArrayList<Product> inventory) {
 
         //start user messaging
@@ -101,6 +102,7 @@ public class StoreApp {
 
     }
 
+    //display products by a specific product id
     public static void displayProductById(ArrayList<Product> inventory, int id) {
 
         //start user messaging
@@ -124,6 +126,7 @@ public class StoreApp {
 
     }
 
+    //method to display the main menu
     public static int mainMenu() {
 
         //create the scanner to use to capture user input
@@ -157,6 +160,7 @@ public class StoreApp {
         return choice;
     }
 
+    //method to get a product id from the user to lookup product by id
     public static int productByIdMenu() {
         Scanner theScanner = new Scanner(System.in);
         int productID;
